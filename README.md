@@ -56,9 +56,9 @@ Please check your configuration to confirm you see messages coming in before att
 ```
 
 To summarize:
-| Vhost | Exchange | Routing key | Queue |
-| ----- | -------- | ----------- | ----- |
-| /influxdb | influxdb | "" | influxq |
+| Vhost     | Exchange | Routing Key | Queue   |
+|-----------|----------|-------------|---------|
+| /influxdb | influxdb | ""          | influxq |
 
 
 ## Filling the queue
