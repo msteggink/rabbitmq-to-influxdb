@@ -73,7 +73,7 @@ Adding metrics from Telegraf to RabbitMQ, use the AMQP output:
     url = "amqp://rabbit:rabbit@rabbitmq.example.com:5672/%2Finfluxdb"
     auth_method = "PLAIN"
     exchange = "influxdb"
-
+```
 
 ## Consuming the queue
 
@@ -109,6 +109,7 @@ If there are no messages, it will wait 10 seconds before reading out again. As l
 | influxq | 2        |
 +---------+----------+
 ```
+
 ```
 ./streamer.sh
 Submitting 92 /tmp/linefile
