@@ -19,7 +19,7 @@ INFLUXDB_DB="telegraf"
 while [ true ] ;do
   rm -f /$TMPDIR/linefile
   /usr/local/bin/rabbitmq-dump-queue -uri "amqp://$USER:$PASS@$RABBITMQHOST/$VHOST" -max-messages=$MESSAGES -output-dir $TMPDIR -queue=$QUEUE -ack=true 2>&1>/dev/null
-  for file in `seq -w $MESSAGES`; do
+  for file in `seq -w 0 $MESSAGES`; do
     if [ -f /$TMPDIR/msg-00$file ]; then
       cat $TMPDIR/msg-00$file >> $TMPDIR/linefile
       echo >> $TMPDIR/linefile

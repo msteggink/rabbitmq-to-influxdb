@@ -56,9 +56,12 @@ Please check your configuration to confirm you see messages coming in before att
 ```
 
 To summarize:
-| Vhost | Exchange | Routing key | Queue |
-| ----- | -------- | ----------- | ----- |
-| /influxdb | influxdb | "" | influxq |
+
+
+| Vhost     | Exchange | Routing Key | Queue   |
+|-----------|----------|-------------|---------|
+| /influxdb | influxdb | ""          | influxq |
+
 
 
 ## Filling the queue
@@ -73,7 +76,7 @@ Adding metrics from Telegraf to RabbitMQ, use the AMQP output:
     url = "amqp://rabbit:rabbit@rabbitmq.example.com:5672/%2Finfluxdb"
     auth_method = "PLAIN"
     exchange = "influxdb"
-
+```
 
 ## Consuming the queue
 
@@ -109,6 +112,7 @@ If there are no messages, it will wait 10 seconds before reading out again. As l
 | influxq | 2        |
 +---------+----------+
 ```
+
 ```
 ./streamer.sh
 Submitting 92 /tmp/linefile
