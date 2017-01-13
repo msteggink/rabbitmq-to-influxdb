@@ -16,6 +16,21 @@ PASS="rabbit"
 INFLUXDB_HOST="influxdb.example.com"
 INFLUXDB_DB="telegraf"
 
+trap ctrl_c INT
+
+function ctrl_c() {
+  rm -f /var/run/streamer
+  exit 0
+}
+
+
+if [ -f /var/run/streamer ]; then
+  echo "Lockfile present"
+  exit 1
+fi
+
+touch /var/run/streamer
+
 while [ true ] ;do
   rm -f /$TMPDIR/linefile
   /usr/local/bin/rabbitmq-dump-queue -uri "amqp://$USER:$PASS@$RABBITMQHOST/$VHOST" -max-messages=$MESSAGES -output-dir $TMPDIR -queue=$QUEUE -ack=true 2>&1>/dev/null
