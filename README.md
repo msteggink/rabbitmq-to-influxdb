@@ -142,6 +142,16 @@ Submitting 5875 /tmp/linefile ...  done
 Submitting 6034 /tmp/linefile ...  done
 ```
 
+Once the queue is emtpy, it will sleep and try later.
+
+```
+Submitting 6313 /tmp/linefile ...  done
+Submitting 4833 /tmp/linefile ...  done
+No messages, sleeping
+Submitting 3420 /tmp/linefile ...  done
+No messages, sleeping
+```
+
 Issues
 ===
 Handling errors (http response != 204):

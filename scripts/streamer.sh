@@ -22,6 +22,11 @@ function ctrl_c() {
   exit 0
 }
 
+timeout 1 bash -c "cat < /dev/null > /dev/tcp/$INFLUXDB_HOST/8086"
+if [ $? -ne 0 ]; then
+  echo "Could not connect to $INFLUXDB_HOST 8086"
+  exit 1 
+fi
 
 if [ -f $LOCKFILE ]; then
   echo "Lockfile present"
