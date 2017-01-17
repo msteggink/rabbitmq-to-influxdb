@@ -126,3 +126,38 @@ Date: Wed, 11 Jan 2017 08:46:48 GMT
 
 No messages, sleeping
 ````
+
+Running
+===
+Make sure to set the variables correctly.
+
+After that, simple run the script, it will start draining the queue and posting to InfluxDB. 
+```
+# ./streamer.sh
+Submitting 5570 /tmp/linefile ...  done
+Submitting 6262 /tmp/linefile ...  done
+Submitting 5656 /tmp/linefile ...  done
+Submitting 5570 /tmp/linefile ...  done
+Submitting 5875 /tmp/linefile ...  done
+Submitting 6034 /tmp/linefile ...  done
+```
+
+Issues
+===
+Handling errors (http response != 204):
+```
+Submitting 5607 /tmp/linefile ... Unexpected response, aborting.
+```
+
+Attemping to run multiple identical streamers. If this is required, change the variables in the script.
+```
+Lockfile present
+Please check why. Submit the last metrics and remove the lockfile /var/run/streamer
+curl -s -q -i -XPOST "http://influxdb.example.com:8086/write?db=telegraf" --data-binary @/tmp/linefile
+```
+
+After every succesful POST, it will remove the linefile afterwards. If the linefile is still present they may have not been submitted, these can be manually resubmitted.
+```
+Possible unsubmitted metrics found.
+curl -s -q -i -XPOST "http://influxdb.example.com:8086/write?db=telegraf" --data-binary @/tmp/linefile
+```
